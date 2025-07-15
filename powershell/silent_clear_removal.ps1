@@ -1,12 +1,14 @@
-# Run silently - no output, no user interaction
+# Silent PowerShell script to remove clear.exe and its containing directories from all user profiles
+
 $usersPath = "C:\Users"
-$targetRelativePath = "AppData\Local\Programs\clear\1.1.1.0\clear.exe"
+$targetRelativeDir = "AppData\Local\Programs\clear"
 
 Get-ChildItem -Path $usersPath -Directory -ErrorAction SilentlyContinue | ForEach-Object {
     $userProfile = $_.FullName
-    $targetPath = Join-Path $userProfile $targetRelativePath
+    $targetDir = Join-Path $userProfile $targetRelativeDir
 
-    if (Test-Path $targetPath) {
-        Remove-Item -Path $targetPath -Force -ErrorAction SilentlyContinue
+    if (Test-Path $targetDir) {
+        # Force delete the entire 'clear' directory quietly
+        Remove-Item -Path $targetDir -Recurse -Force -ErrorAction SilentlyContinue
     }
 }
