@@ -8,5 +8,6 @@ Analysis: File sent to user over email. Opens a fake Proofpoint page that looks 
 
 tl;dr
 Threat Actor used a legitimate home page and just changed the redirects on it to point to another URL. That URL would then resolve to a Microsoft-like login page where it would harvest credentials. As of 15JULY2025 the webpage no longer works. 
----
+
+
 
